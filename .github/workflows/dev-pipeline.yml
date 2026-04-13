@@ -1,133 +1,70 @@
-name: Infrastructure Pipeline
+name: CI/CD Development Pipeline
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy-infrastructure:
+  # --- Microservicio Vote (Java) ---
+  built-vote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push Vote
+        uses: docker/build-push-action@v5
+        with:
+          context: ./vote
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:latest
+            ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:${{ github.sha }}
+
+  # --- Microservicio Worker (GO) ---
+  build-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push Worker
+        uses: docker/build-push-action@v5
+        with:
+          context: ./worker
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:latest
+            ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:${{ github.sha }}
+
+  # --- Microservicio Result (Node.js) ---
+  build-result:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Login to Azure
-        uses: azure/login@v1
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Connect to AKS
-        uses: azure/aks-set-context@v3
+      - name: Build and Push Result
+        uses: docker/build-push-action@v5
         with:
-          resource-group: rg-voting-app
-          cluster-name: aks-voting-app
-
-      - name: Setup Helm
-        uses: azure/setup-helm@v3
-
-      - name: Deploy Kafka and PostgreSQL
-        run: |
-          helm upgrade --install infrastructure ./infrastructure \
-            --values ./infrastructure/values.yaml \
-            --wait \
-            --timeout 5m
-
-      - name: Deploy Vote
-        run: |
-          kubectl apply -f - <<EOF
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: vote
-          spec:
-            replicas: 1
-            selector:
-              matchLabels:
-                app: vote
-            template:
-              metadata:
-                labels:
-                  app: vote
-              spec:
-                containers:
-                - name: vote
-                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:${{ github.sha }}
-                  ports:
-                  - containerPort: 8080
-          ---
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: vote
-          spec:
-            type: LoadBalancer
-            selector:
-              app: vote
-            ports:
-            - port: 80
-              targetPort: 8080
-          EOF
-
-      - name: Deploy Worker
-        run: |
-          kubectl apply -f - <<EOF
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: worker
-          spec:
-            replicas: 1
-            selector:
-              matchLabels:
-                app: worker
-            template:
-              metadata:
-                labels:
-                  app: worker
-              spec:
-                containers:
-                - name: worker
-                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:${{ github.sha }}
-          EOF
-
-      - name: Deploy Result
-        run: |
-          kubectl apply -f - <<EOF
-          apiVersion: apps/v1
-          kind: Deployment
-          metadata:
-            name: result
-          spec:
-            replicas: 1
-            selector:
-              matchLabels:
-                app: result
-            template:
-              metadata:
-                labels:
-                  app: result
-              spec:
-                containers:
-                - name: result
-                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-result:${{ github.sha }}
-                  ports:
-                  - containerPort: 80
-          ---
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: result
-          spec:
-            type: LoadBalancer
-            selector:
-              app: result
-            ports:
-            - port: 80
-              targetPort: 80
-          EOF
-
-      - name: Verify Deployment
-        run: |
-          kubectl get pods
-          kubectl get services
+          context: ./result
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/voting-app-result:latest
+            ${{ secrets.DOCKER_USERNAME }}/voting-app-result:${{ github.sha }}
