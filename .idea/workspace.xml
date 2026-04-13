@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="feat: agregar pipeline de infraestructura para AKS">
+    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="fix: fix infrastructure pipeline production branch">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/infra-pipeline.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/infra-pipeline.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,28 +21,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "juancasanov"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;juancasanov&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="2b93148c-5385-41e4-bfb6-c278d13292ca" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/juancasanov/microservices-demo.git",
-    "accountId": "2b93148c-5385-41e4-bfb6-c278d13292ca"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/juancasanov/microservices-demo.git&quot;,
+    &quot;accountId&quot;: &quot;2b93148c-5385-41e4-bfb6-c278d13292ca&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2,
-  "fromUser": false
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="29ZDum0bi172ESgNp5skzpi7DjZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -53,7 +55,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/dev-pipeline",
+    "git-widget-placeholder": "feature/terraform",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Juan Casanova/Documents/College/8thSemester/ingesoft5/talleres/Taller 1/microservices-demo",
@@ -70,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653311939246</updated>
-      <workItem from="1776015655607" duration="7489000" />
+      <workItem from="1776015655607" duration="8384000" />
     </task>
     <task id="LOCAL-00001" summary="feat: agregar pipeline CI/CD de desarrollo para los tres microservicios">
       <option name="closed" value="true" />
@@ -88,7 +90,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776033337942</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix: fix infrastructure pipeline images">
+      <option name="closed" value="true" />
+      <created>1776039139642</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776039139642</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix: fix infrastructure pipeline production branch">
+      <option name="closed" value="true" />
+      <created>1776042207360</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776042207360</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +115,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: agregar pipeline CI/CD de desarrollo para los tres microservicios" />
     <MESSAGE value="feat: agregar pipeline de infraestructura para AKS" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: agregar pipeline de infraestructura para AKS" />
+    <MESSAGE value="fix: fix infrastructure pipeline images" />
+    <MESSAGE value="fix: fix infrastructure pipeline production branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fix infrastructure pipeline production branch" />
   </component>
 </project>
