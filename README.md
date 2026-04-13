@@ -1,49 +1,102 @@
 # Microservices Demo
 
-A demo application with Java, Go, Javascript, Kafka and PostgresQL.
+Aplicación de votación distribuida construida con microservicios, utilizada como base para el **Taller 1 — Construcción de pipelines en Cloud**.
 
-## Architecture
+> Proyecto original: [okteto/microservices-demo](https://github.com/okteto/microservices-demo)  
+> Metodología ágil: **Scrum**
 
-![Architecture diagram](architecture.png)
+---
 
-* A front-end web app in [Java](/vote) which lets you vote between Tacos and Burritos
-* A [Kafka](https://bitnami.com/stack/kafka/helm) queue which collects new votes
-* A [Golang](/worker) or worker which consumes votes from Kafka and stores them in PostgresQL
-* A [PostgresQL](https://bitnami.com/stack/postgresql/helm) database
-* A [Node.js](/result) webapp which shows the results of the voting in real time
+## Arquitectura
 
-## Run the demo application in Okteto
+![Diagrama de arquitectura](architecture-diagram.svg)
+
+El sistema permite a los usuarios votar entre dos opciones (Tacos vs Burritos) y ver los resultados en tiempo real. Está compuesto por cinco componentes principales:
+
+| Servicio | Tecnología | Rol |
+|---|---|---|
+| `vote/` | Java · Puerto 8080 | Frontend de votación — publica eventos a Kafka |
+| `worker/` | Go | Consumidor Kafka — persiste votos en PostgreSQL |
+| `result/` | Node.js · Puerto 4000 | Frontend de resultados — lee de PostgreSQL en tiempo real |
+| Kafka | Apache Kafka (Bitnami Helm) | Broker de mensajes asíncrono |
+| PostgreSQL | PostgreSQL (Bitnami Helm) | Base de datos de resultados |
+
+---
+
+## Documentación
+
+| Documento | Descripción |
+|---|---|
+| [Estrategia de branching](docs/branching-strategy.md) | GitHub Flow (desarrollo) y Environment Branching (operaciones) |
+| [Patrones de diseño en la nube](docs/cloud-design-patterns.md) | Event-Driven Messaging y Sidecar Pattern |
+| [Pipelines CI/CD](docs/pipelines.md) | Descripción de deploy-pipeline.yml e infra-pipeline.yml |
+
+---
+
+## Pipelines CI/CD
+
+El proyecto utiliza **GitHub Actions** con dos workflows en `.github/workflows/`:
+
+### `deploy-pipeline.yml`
+Se activa con cada push o PR a `main`. Construye, testea y despliega los tres microservicios al cluster de Kubernetes.
+
+### `infra-pipeline.yml`
+Se activa con cambios en la rama de infraestructura. Ejecuta `terraform plan` y `terraform apply` para provisionar y actualizar el cluster.
+
+---
+
+## Infraestructura
+
+La infraestructura está definida como código en la carpeta `/terraform` y se despliega sobre **Kubernetes** usando **Helm charts** de Bitnami para Kafka y PostgreSQL.
 
 ```
-$ git clone https://github.com/okteto/microservices-demo
-$ cd microservices-demo
-$ okteto login
-$ okteto deploy
+infrastructure/   # Manifiestos de Kubernetes (Helm values)
+terraform/        # Definición de infraestructura como código
 ```
 
-## Develop on the Result microservice
+---
 
-```
-$ okteto up result
-```
+## Estrategia de branching
 
-## Develop on the Vote microservice
-
+**Desarrollo — GitHub Flow:**
 ```
-$ okteto up vote
+main ◀── PR ◀── feature/nombre-funcionalidad
 ```
 
-## Develop on the Worker microservice
-
+**Operaciones — Environment Branching:**
 ```
-$ okteto up worker
-$ make start
+develop ──PR──▶ staging ──PR──▶ main
 ```
 
-## Notes
+---
 
-The voting application only accepts one vote per client. It does not register votes if a vote has already been submitted from a client.
+## Correr localmente
 
-This isn't an example of a properly architected perfectly designed distributed app... it's just a simple
-example of the various types of pieces and languages you might see (queues, persistent data, etc), and how to
-deal with them in Okteto.
+```bash
+git clone https://github.com/juancasanov/microservices-demo
+cd microservices-demo
+okteto login
+okteto deploy
+```
+
+### Desarrollar en un microservicio específico
+
+```bash
+# Vote service
+okteto up vote
+
+# Result service  
+okteto up result
+
+# Worker service
+okteto up worker
+make start
+```
+
+---
+
+## Notas
+
+- La aplicación acepta un solo voto por cliente.
+- Kafka y PostgreSQL se despliegan via Helm charts de Bitnami.
+- Los pipelines requieren los secrets `DOCKER_USERNAME` y `DOCKER_PASSWORD` configurados en GitHub.
