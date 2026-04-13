@@ -19,3 +19,9 @@
 /vote/vote.iml
 
 /browser_screenshots
+
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+.terraform.lock.hcl
