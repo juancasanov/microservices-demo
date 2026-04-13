@@ -10,49 +10,61 @@ on:
       - main
 
 jobs:
-  # --- Microservicio Vote (Java) ---
   built-vote:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx       
+        uses: docker/setup-buildx-action@v3
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and Push Vote
         uses: docker/build-push-action@v5
         with:
           context: ./vote
+          platforms: linux/amd64        
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:latest
             ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:${{ github.sha }}
 
-  # --- Microservicio Worker (GO) ---
   build-worker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and Push Worker
         uses: docker/build-push-action@v5
         with:
           context: ./worker
+          platforms: linux/amd64    
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:latest
             ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:${{ github.sha }}
 
-  # --- Microservicio Result (Node.js) ---
   build-result:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -64,6 +76,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./result
+          platforms: linux/amd64      
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/voting-app-result:latest
