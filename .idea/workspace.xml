@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="feat: agregar Terraform para provisioning de AKS e integrar en pipeline de infraestructura">
+    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="fix: terraform variables">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/infra-pipeline.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/infra-pipeline.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terraform/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/main.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776044456520</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix: terraform variables">
+      <option name="closed" value="true" />
+      <created>1776082221361</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776082221361</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +137,7 @@
     <MESSAGE value="fix: fix infrastructure pipeline images" />
     <MESSAGE value="fix: fix infrastructure pipeline production branch" />
     <MESSAGE value="feat: agregar Terraform para provisioning de AKS e integrar en pipeline de infraestructura" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: agregar Terraform para provisioning de AKS e integrar en pipeline de infraestructura" />
+    <MESSAGE value="fix: terraform variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: terraform variables" />
   </component>
 </project>
