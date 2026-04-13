@@ -3,7 +3,7 @@ name: Infrastructure Pipeline
 on:
   push:
     branches:
-      - production
+      - main
   workflow_dispatch:
 
 jobs:
@@ -16,6 +16,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Connect to AKS
         uses: azure/aks-set-context@v3
         with:
@@ -51,7 +52,7 @@ jobs:
               spec:
                 containers:
                 - name: vote
-                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:latest
+                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:${{ github.sha }}
                   ports:
                   - containerPort: 8080
           ---
@@ -87,7 +88,7 @@ jobs:
               spec:
                 containers:
                 - name: worker
-                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:latest
+                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:${{ github.sha }}
           EOF
 
       - name: Deploy Result
@@ -109,7 +110,7 @@ jobs:
               spec:
                 containers:
                 - name: result
-                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-result:latest
+                  image: ${{ secrets.DOCKER_USERNAME }}/voting-app-result:${{ github.sha }}
                   ports:
                   - containerPort: 80
           ---
