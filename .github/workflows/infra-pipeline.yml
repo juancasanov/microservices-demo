@@ -97,9 +97,11 @@ jobs:
                     value: "kafka:9092"
                   - name: DB_HOST
                     value: "postgresql"
-                  - name: DB_USER
+                  - name: DB_PORT 
+                    value: "5432"
+                  - name: POSTGRES_USER
                     value: "postgres"
-                  - name: DB_PASS
+                  - name: POSTGRES_PASSWORD
                     value: "postgres"
           EOF
 
