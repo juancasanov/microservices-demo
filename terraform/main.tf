@@ -15,13 +15,18 @@ provider "azurerm" {
 resource "azurerm_resource_group" "rg" {
   name     = "rg-voting-app"
   location = var.location
+
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes  = [tags, location]
+  }
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks-voting-app"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  dns_prefix          = "aks-voting-app"
+  dns_prefix          = "aks-voting-rg-voting-app-fd5d94"
 
   default_node_pool {
     name       = "nodepool1"
@@ -36,6 +41,17 @@ resource "azurerm_kubernetes_cluster" "aks" {
   tags = {
     environment = "production"
     project     = "voting-app"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = [
+      dns_prefix,
+      linux_profile,
+      network_profile,
+      tags,
+      default_node_pool[0].upgrade_settings
+    ]
   }
 }
 
