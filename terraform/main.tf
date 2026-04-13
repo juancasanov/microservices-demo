@@ -1,3 +1,17 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+  subscription_id = var.subscription_id
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = "rg-voting-app"
   location = var.location
@@ -23,4 +37,17 @@ resource "azurerm_kubernetes_cluster" "aks" {
     environment = "production"
     project     = "voting-app"
   }
+}
+
+output "cluster_name" {
+  value = azurerm_kubernetes_cluster.aks.name
+}
+
+output "resource_group" {
+  value = azurerm_resource_group.rg.name
+}
+
+output "kube_config" {
+  value     = azurerm_kubernetes_cluster.aks.kube_config_raw
+  sensitive = true
 }
