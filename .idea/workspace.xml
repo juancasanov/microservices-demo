@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="fix: infra pipeline working" />
+    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="fix: infra pipeline working">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/dev-pipeline.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dev-pipeline.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/infra-pipeline.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/infra-pipeline.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +36,10 @@
     &quot;accountId&quot;: &quot;2b93148c-5385-41e4-bfb6-c278d13292ca&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -54,7 +62,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "#6 on main",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Juan Casanova/Documents/College/8thSemester/ingesoft5/talleres/Taller 1/microservices-demo",
@@ -72,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1653311939246</updated>
       <workItem from="1776015655607" duration="8384000" />
+      <workItem from="1776104245617" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="feat: agregar pipeline CI/CD de desarrollo para los tres microservicios">
       <option name="closed" value="true" />
