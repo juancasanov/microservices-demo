@@ -27,9 +27,7 @@ jobs:
         with:
           context: ./vote
           push: true
-          platforms: linux/amd64
-          provenance: false 
-          sbom: false 
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:latest
             ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:${{ github.sha }}
@@ -51,9 +49,7 @@ jobs:
         with:
           context: ./worker
           push: true
-          platforms: linux/amd64
-          provenance: false 
-          sbom: false
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:latest
             ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:${{ github.sha }}
@@ -76,9 +72,7 @@ jobs:
         with:
           context: ./result
           push: true
-          platforms: linux/amd64
-          provenance: false 
-          sbom: false
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/voting-app-result:latest
             ${{ secrets.DOCKER_USERNAME }}/voting-app-result:${{ github.sha }}
