@@ -53,6 +53,7 @@ jobs:
                 containers:
                 - name: vote
                   image: ${{ secrets.DOCKER_USERNAME }}/voting-app-vote:latest
+                  imagePullPolicy: Always
                   ports:
                   - containerPort: 8080
                   env:
@@ -92,6 +93,7 @@ jobs:
                 containers:
                 - name: worker
                   image: ${{ secrets.DOCKER_USERNAME }}/voting-app-worker:latest
+                  imagePullPolicy: Always
                   env:
                   - name: KAFKA_BROKERS
                     value: "kafka:9092"
@@ -125,6 +127,7 @@ jobs:
                 containers:
                 - name: result
                   image: ${{ secrets.DOCKER_USERNAME }}/voting-app-result:latest
+                  imagePullPolicy: Always
                   ports:
                   - containerPort: 80
                   env: 
