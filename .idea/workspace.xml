@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="fix: added docker buildx param">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vote/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/vote/src/main/resources/templates/index.html" afterDir="false" />
+    <list default="true" id="ea0c6e5b-9ba6-4419-b8f2-46eeb9f5bbde" name="Changes" comment="feat: small test">
+      <change beforePath="$PROJECT_DIR$/vote/src/main/java/com/okteto/vote/controller/VoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/vote/src/main/java/com/okteto/vote/controller/VoteController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -81,7 +81,7 @@
       <workItem from="1776015655607" duration="8384000" />
       <workItem from="1776104245617" duration="2269000" />
       <workItem from="1776119543184" duration="99000" />
-      <workItem from="1776226623323" duration="1067000" />
+      <workItem from="1776226623323" duration="9048000" />
     </task>
     <task id="LOCAL-00001" summary="feat: agregar pipeline CI/CD de desarrollo para los tres microservicios">
       <option name="closed" value="true" />
@@ -147,11 +147,46 @@
       <option name="project" value="LOCAL" />
       <updated>1776104592600</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: small test">
+      <option name="closed" value="true" />
+      <created>1776228032001</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776228032001</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: small test">
+      <option name="closed" value="true" />
+      <created>1776231222192</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776231222192</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: small test">
+      <option name="closed" value="true" />
+      <created>1776233348921</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776233348921</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: agregar pipeline CI/CD de desarrollo para los tres microservicios" />
@@ -162,6 +197,7 @@
     <MESSAGE value="fix: terraform variables" />
     <MESSAGE value="fix: infra pipeline working" />
     <MESSAGE value="fix: added docker buildx param" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: added docker buildx param" />
+    <MESSAGE value="feat: small test" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: small test" />
   </component>
 </project>
